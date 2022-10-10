@@ -2,31 +2,30 @@ package com.example.week3.Entities;
 
 import org.springframework.beans.factory.annotation.Value;
 
-public class MyEntity implements Comparable<MyEntity>,Entity
+public class MyEntity implements Comparable<MyEntity>
     {
         //final int id2=2;
         @Value("$default.entity.id")
-        private int id;
+        private long id;
         @Value("$default.entity.name")
         String name;
-        MyEntity(int id, String name)
-        {
-            this.id = id;
-            this.name = name;
+
+        public MyEntity() {
         }
-        @Override
+
+
         public String getName() {
             return name;
         }
-        @Override
+
         public void setName(String name) {
             this.name = name;
         }
-        @Override
-        public int getId() {
+
+        public long getId() {
             return this.id;
         }
-        @Override
+
         public void setId(int id) {
             this.id = id;
         }

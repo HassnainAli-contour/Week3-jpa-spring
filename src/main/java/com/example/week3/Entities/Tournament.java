@@ -12,6 +12,6 @@ public class Tournament extends MyEntity{
     }
 
     public Tournament(int id, String name) {
-        super(id, name);
+        super();
     }
 }

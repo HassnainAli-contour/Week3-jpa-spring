@@ -8,7 +8,7 @@ public class Team extends MyEntity{
 
     public Team(int id,String name)
     {
-        super(id,name);
+        super();
         this.name = name;
         this.teamPlayers = new HashSet<>();
     }
