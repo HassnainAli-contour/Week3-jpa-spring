@@ -26,21 +26,22 @@ public class TeamController {
     @PostMapping("/addteam")
     public String addTeam(@RequestBody Team team)
     {
-        return    service.save(team);
+        service.add(team);
+        return "success";
         //   System.out.println(player.getRuns());
         //   return String.format("%-20s  %-5d", player.getName(),player.getId());
     }
     @PutMapping("/updateteam")
     public String updateTeam(@RequestBody Team team)
     {
-        return service.update(team);
+        service.update(team);
+        return "success";
     }
 
     @DeleteMapping("/deleteteam")
     public String deleteTeam(@RequestParam(value = "id",defaultValue = "-1") int id){
-        if(service.delete(id))
-            return String.format("%-8s : %-5d Successfully deleted \n", "Team", id);
-        else
-            return String.format("%-8s : %-5d Not Found \n", "Team", id);
+        service.delete(id);
+        return "success";
+
     }
 }

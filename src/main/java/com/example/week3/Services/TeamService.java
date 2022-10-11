@@ -3,11 +3,22 @@ package com.example.week3.Services;
 import com.example.week3.Entities.Player;
 import com.example.week3.Entities.Team;
 import com.example.week3.repository.GenericDAOImpl;
+import com.example.week3.repository.TeamJPARep;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TeamService extends GenericCRUDService<Team>{
-    TeamService(){
+public class TeamService extends GenericService<Team>{
+    @Autowired
+    TeamService(TeamJPARep repository){
+        this.repository = repository;
+        this.add(new Team("Pakistan"));
+        this.add(new Team("India"));
+        this.add(new Team("Bangladesh"));
+
+
+
+
 //
 //        Player p=new Player(223,"Saeed Anwer",23);
 //        Player p2=new Player(247,"Shahid Afridi",24);

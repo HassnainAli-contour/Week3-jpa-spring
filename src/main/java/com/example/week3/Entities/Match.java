@@ -22,9 +22,7 @@ public class Match extends MyEntity {
 
     public Match(int id, String name){
 
-        super();
         dueDate=LocalDate.now().minusDays(new Random().nextInt(10));
-        score = 300-345;
         this.name = name;
         this.teams = new HashSet<Team>(2);
         scoreCard = new HashMap<>();

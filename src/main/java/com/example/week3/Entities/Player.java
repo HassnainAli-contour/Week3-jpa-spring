@@ -32,6 +32,12 @@ public class Player extends MyEntity{
     @Column(name = "matches")
     private int matchesPlayed;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id")
+    private Team team;
+    public void setTeam(Team team) {
+        this.team=team;
+    }
 
     public long getId() {
         return id;
@@ -78,5 +84,9 @@ public class Player extends MyEntity{
 
     public void setMatchesPlayed(int matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
+    }
+
+    public Team getTeam() {
+        return this.team;
     }
 }
