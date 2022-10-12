@@ -14,6 +14,7 @@ public class GenericService<T>{
 //        this.repository = repository;
 //    }
     public List<T> getAll(){
+
         return  repository.findAll();
     }
     public T get(long id)
@@ -21,6 +22,7 @@ public class GenericService<T>{
         return repository.findById(id).get();
     }
     public void add(T t){
+
         repository.save(t);
     };
     public void delete(long id ){

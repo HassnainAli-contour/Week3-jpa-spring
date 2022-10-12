@@ -27,7 +27,11 @@ public class Team extends MyEntity{
     @Column(name = "name",columnDefinition = "TEXT",nullable = false)
     private String name;
 
+    //.........................................................................................................................
+    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL)
+    //@JoinColumn(name = "team_id",referencedColumnName = "id")
     private List<Player> players;
+
     @Override
     public long getId() {
         return id;

@@ -12,9 +12,9 @@ public class TeamService extends GenericService<Team>{
     @Autowired
     TeamService(TeamJPARep repository){
         this.repository = repository;
-        this.add(new Team("Pakistan"));
-        this.add(new Team("India"));
-        this.add(new Team("Bangladesh"));
+//        this.add(new Team("Pakistan"));
+//        this.add(new Team("India"));
+//        this.add(new Team("Bangladesh"));
 
 
 
