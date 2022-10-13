@@ -26,15 +26,13 @@ public class Player extends MyEntity{
     @Column(name = "name",columnDefinition = "TEXT",nullable = false)
     private String name;
 
-    @Column(name = "runs")
     private int runs;
 
-    @Column(name = "matches")
     private int matchesPlayed;
 
-    @ManyToOne
-    @JoinColumn(name = "team_id",nullable = false)
-    private Team team;
+//    @ManyToOne
+//    @JoinColumn(name = "team_id")
+//    private Team team;
 
 
 

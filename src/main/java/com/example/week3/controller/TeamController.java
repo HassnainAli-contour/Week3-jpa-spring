@@ -26,6 +26,7 @@ public class TeamController {
     @PostMapping("/addteam")
     public String addTeam(@RequestBody Team team)
     {
+        team.getPlayers().forEach(p-> System.out.println(p.getName()));
         service.add(team);
         return "success";
         //   System.out.println(player.getRuns());

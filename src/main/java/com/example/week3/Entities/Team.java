@@ -24,13 +24,16 @@ public class Team extends MyEntity{
     )
     @Column(name = "id")
     private long id;
-    @Column(name = "name",columnDefinition = "TEXT",nullable = false)
     private String name;
 
-    //.........................................................................................................................
-    @OneToMany(mappedBy = "team",cascade = CascadeType.ALL)
-    //@JoinColumn(name = "team_id",referencedColumnName = "id")
+    //........................................Relationship.................................................................................
+    @OneToMany(targetEntity = Player.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id",referencedColumnName = "id")
     private List<Player> players;
+
+    public List<Player> getPlayers() {
+        return players;
+    }
 
     @Override
     public long getId() {
