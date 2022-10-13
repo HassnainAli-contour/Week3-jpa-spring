@@ -1,7 +1,5 @@
 package com.example.week3.Services;
 
-import com.example.week3.Entities.Player;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -21,9 +19,8 @@ public class GenericService<T>{
     {
         return repository.findById(id).get();
     }
-    public void add(T t){
-
-        repository.save(t);
+    public boolean add(T t){
+        return (repository.save(t)==null);
     };
     public void delete(long id ){
         repository.deleteById(id);

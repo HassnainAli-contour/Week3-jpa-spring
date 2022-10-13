@@ -5,7 +5,6 @@ package com.example.week3.repository;
 //
 
 import com.example.week3.Entities.MyEntity;
-import com.example.week3.Services.GenericCRUDService;
 import org.springframework.stereotype.Component;
 
 import java.util.LinkedList;

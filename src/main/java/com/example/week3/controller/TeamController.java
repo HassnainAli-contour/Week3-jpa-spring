@@ -1,7 +1,7 @@
 package com.example.week3.controller;
 
+import com.example.week3.Entities.Player;
 import com.example.week3.Entities.Team;
-import com.example.week3.Services.GenericCRUDService;
 import com.example.week3.Services.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +24,20 @@ public class TeamController {
     }
 
     @PostMapping("/addteam")
-    public String addTeam(@RequestBody Team team)
+    public Team addTeam(@RequestBody Team team)
     {
-        team.getPlayers().forEach(p-> System.out.println(p.getName()));
+        System.out.println(team.geMatches());
         service.add(team);
-        return "success";
+        return team;
+        //return "success";
         //   System.out.println(player.getRuns());
         //   return String.format("%-20s  %-5d", player.getName(),player.getId());
+    }
+
+    @GetMapping("getteam")
+    public Team getTeam(@RequestParam(value = "id",defaultValue = "-1") int id)
+    {
+        return service.get(id);            //!=null?p : null;
     }
     @PutMapping("/updateteam")
     public String updateTeam(@RequestBody Team team)

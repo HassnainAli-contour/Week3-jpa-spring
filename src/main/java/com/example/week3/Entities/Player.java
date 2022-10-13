@@ -30,9 +30,9 @@ public class Player extends MyEntity{
 
     private int matchesPlayed;
 
-//    @ManyToOne
-//    @JoinColumn(name = "team_id")
-//    private Team team;
+    @ManyToOne(targetEntity = Team.class,fetch = FetchType.EAGER)
+    @JoinColumn(name = "team_id",referencedColumnName="id")
+    private Team team;
 
 
 

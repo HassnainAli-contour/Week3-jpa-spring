@@ -26,10 +26,24 @@ public class Team extends MyEntity{
     private long id;
     private String name;
 
-    //........................................Relationship.................................................................................
+    //........................................Relationships.................................................................................
     @OneToMany(targetEntity = Player.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id",referencedColumnName = "id")
     private List<Player> players;
+
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,targetEntity = Match.class)
+    @JoinTable(name="match_team",
+            joinColumns = {
+            @JoinColumn(name="team_id",referencedColumnName = "id")
+    },inverseJoinColumns = {
+            @JoinColumn(name = "match_id",referencedColumnName = "id")
+    }
+    )
+    private List<Match> matches;
+
+    public List<Match> geMatches(){
+        return matches;
+    }
 
     public List<Player> getPlayers() {
         return players;
