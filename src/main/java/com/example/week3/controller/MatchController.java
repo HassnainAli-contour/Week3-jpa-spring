@@ -32,10 +32,10 @@ public class MatchController {
         return service.get(id);            //!=null?p : null;
     }
     @PostMapping("/addmatch")
-    public String addMatch(@RequestBody Match Match)
+    public Match addMatch(@RequestBody Match match)
     {
-        service.add(Match);
-        return "success ";
+        service.add(match);
+        return match;
     }
     @PutMapping("/updatematch")
     public String updateMatch(@RequestBody Match Match)

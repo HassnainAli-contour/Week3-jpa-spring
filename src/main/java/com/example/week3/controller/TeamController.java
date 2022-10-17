@@ -1,8 +1,9 @@
 package com.example.week3.controller;
 
-import com.example.week3.Entities.Player;
 import com.example.week3.Entities.Team;
 import com.example.week3.Services.TeamService;
+import com.example.week3.dto.TeamDTO;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,26 +19,24 @@ public class TeamController {
     }
 
     @GetMapping("/teams")
-    public List<Team> getTeams()
+    public List<TeamDTO> getTeams()
     {
-        return service.getAll();
+        return service.getAllwithPlayers();
     }
 
     @PostMapping("/addteam")
     public Team addTeam(@RequestBody Team team)
     {
-        System.out.println(team.geMatches());
         service.add(team);
         return team;
-        //return "success";
-        //   System.out.println(player.getRuns());
+
         //   return String.format("%-20s  %-5d", player.getName(),player.getId());
     }
 
     @GetMapping("getteam")
-    public Team getTeam(@RequestParam(value = "id",defaultValue = "-1") int id)
+    public TeamDTO getTeam(@NotNull @RequestParam(value = "id") long id)
     {
-        return service.get(id);            //!=null?p : null;
+        return service.getTeamWithPlayers(id);            //!=null?p : null;
     }
     @PutMapping("/updateteam")
     public String updateTeam(@RequestBody Team team)
@@ -47,7 +46,7 @@ public class TeamController {
     }
 
     @DeleteMapping("/deleteteam")
-    public String deleteTeam(@RequestParam(value = "id",defaultValue = "-1") int id){
+    public String deleteTeam(@NotNull @RequestParam(value = "id") long id){
         service.delete(id);
         return "success";
 

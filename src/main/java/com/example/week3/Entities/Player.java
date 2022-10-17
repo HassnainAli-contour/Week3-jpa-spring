@@ -1,15 +1,19 @@
 package com.example.week3.Entities;
 
-import com.example.week3.Services.PlayerService;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import java.util.Random;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity(name = "Player")
 @Table(name = "player")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Player extends MyEntity{
     @Id
     @SequenceGenerator(
@@ -30,58 +34,7 @@ public class Player extends MyEntity{
 
     private int matchesPlayed;
 
-    @ManyToOne(targetEntity = Team.class,fetch = FetchType.EAGER)
-    @JoinColumn(name = "team_id",referencedColumnName="id")
+    @ManyToOne(targetEntity = Team.class,cascade = CascadeType.MERGE)
+    @JoinColumn(nullable = false,name = "team_id",updatable = true)
     private Team team;
-
-
-
-    public long getId() {
-        return id;
-    }
-    Player(){
-
-    }
-
-
-    public Player( String name,int runs,int matchesPlayed)
-    {
-        super();
-        this.name = name;
-        this.matchesPlayed=matchesPlayed;
-        this.matchesPlayed = 0;
-        this.runs = runs;
-
-     //   this.runs = 10000+ new Random().nextInt(1000);
-        // this.matchesPlayed=new Random().nextInt(100);
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public int getRuns() {
-        return runs;
-    }
-
-    public void setRuns(int runs) {
-        this.runs = runs;
-    }
-
-    public int getMatchesPlayed() {
-        return matchesPlayed;
-    }
-
-    public void setMatchesPlayed(int matchesPlayed) {
-        this.matchesPlayed = matchesPlayed;
-    }
-
-
 }

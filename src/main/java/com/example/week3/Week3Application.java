@@ -1,8 +1,5 @@
 package com.example.week3;
 
-import com.example.week3.Entities.Match;
-import com.example.week3.Entities.Player;
-import com.example.week3.Entities.Team;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;

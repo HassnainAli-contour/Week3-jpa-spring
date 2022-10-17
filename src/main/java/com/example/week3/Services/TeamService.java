@@ -2,49 +2,45 @@ package com.example.week3.Services;
 
 import com.example.week3.Entities.Player;
 import com.example.week3.Entities.Team;
-import com.example.week3.repository.GenericDAOImpl;
+import com.example.week3.dto.TeamDTO;
 import com.example.week3.repository.TeamJPARep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TeamService extends GenericService<Team>{
+
     @Autowired
     TeamService(TeamJPARep repository){
         this.repository = repository;
-//        this.add(new Team("Pakistan"));
-//        this.add(new Team("India"));
-//        this.add(new Team("Bangladesh"));
+    }
 
+    @Override
+    public boolean delete(long id){
+        Team team = repository.findById(id).get();
+        if(team==null){
+            return false;
+        }
+        //repository.deleteById(team);
+        repository.deleteById(id);
+        return true;
+    }
 
+    public List<TeamDTO> getAllwithPlayers(){
+       List<Team> t=repository.findAll();
+       List<TeamDTO> tdo= new ArrayList<TeamDTO>();
+       for (Team team : t){
+           tdo.add(new TeamDTO(team,((TeamJPARep)repository).getAllWithPlayers(team)));
+       }
+       return  tdo;
+    }
 
-
-//
-//        Player p=new Player(223,"Saeed Anwer",23);
-//        Player p2=new Player(247,"Shahid Afridi",24);
-//        Player p3=new Player(256,"Abdul Qadir",22);
-//        Player p4=new Player(300,"Babar Azam",23);
-//        Player p5=new Player(222,"Imran Nazeer",25);
-//        Player p6=new Player(123,"Imran",25);
-//
-//
-//
-//        //getting player.........................................................
-//        //System.out.println(managePlayer.get(256).getName());
-//
-//
-//        Team t=new Team(1,"Pakistan");
-//        //t.setTeamPlayers(new Player[]{p,p2,p3});
-//        Team t1=new Team(2,"India");
-//        //t1.setTeamPlayers(new Player[]{p4,p3,p5});
-//        Team t2=new Team(3,"Srilanka");
-//        //t2.setTeamPlayers(new Player[]{p4,p5,p});
-//
-//        this.save(t);
-//        this.save(t1);
-//        this.save(t2);
-
-
-     //   System.out.println(genericDAO.getClass().getSimpleName());
+    public TeamDTO getTeamWithPlayers(long id)
+    {
+        Team t = repository.findById(id).get();
+        return new TeamDTO(t,((TeamJPARep)repository).getAllWithPlayers(t));
     }
 }

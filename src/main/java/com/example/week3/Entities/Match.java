@@ -1,8 +1,12 @@
 package com.example.week3.Entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
-import java.time.LocalDate;
 import java.util.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -10,6 +14,9 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name = "match")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Match extends MyEntity {
     @Id
     @SequenceGenerator(
@@ -25,25 +32,12 @@ public class Match extends MyEntity {
     private long id;
     private String name;
 
-    @ManyToMany(mappedBy = "matches",fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Tournament.class,cascade = CascadeType.MERGE)
+    @JoinColumn(nullable = false,name = "tournament_id")
+    private Tournament tournament;
+
+
+    @ManyToMany(mappedBy = "matches",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Team> teams;
 
-    @Override
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public void setName(String name) {
-        this.name = name;
-    }
 }

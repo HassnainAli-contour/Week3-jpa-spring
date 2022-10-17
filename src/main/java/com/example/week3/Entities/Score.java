@@ -4,7 +4,6 @@ public class Score {
     private int runs;
    private int wickets;
 
-
    public Score(int runs, int wickets){
        this.runs = runs;
        this.wickets = wickets;

@@ -38,10 +38,9 @@ public class PlayerController {
       return "success ";
     }
     @PutMapping("/updateplayer")
-    public String updatePlayer(@RequestBody Player player)
+    public Player updatePlayer(@RequestBody Player player)
     {
-        service.update(player);
-        return "success ";
+        return service.update(player);
     }
 
     @DeleteMapping("/deleteplayer")

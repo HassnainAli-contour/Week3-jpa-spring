@@ -30,7 +30,6 @@ public class MyEntity implements Comparable<MyEntity>
             this.id = id;
         }
 
-
         @Override
         public int compareTo(MyEntity o)
         {
