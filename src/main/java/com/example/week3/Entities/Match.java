@@ -30,6 +30,8 @@ public class Match extends MyEntity {
     )
     @Column(name = "id")
     private long id;
+
+
     private String name;
 
     @ManyToOne(targetEntity = Tournament.class,cascade = CascadeType.MERGE)
@@ -37,7 +39,12 @@ public class Match extends MyEntity {
     private Tournament tournament;
 
 
-    @ManyToMany(mappedBy = "matches",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//    @ManyToMany(cascade = CascadeType.MERGE,targetEntity = Match.class)
+//    @JoinTable(
+//            name="match_team",
+//            joinColumns={@JoinColumn(name="match_id", referencedColumnName="id")},
+//            inverseJoinColumns={@JoinColumn(name="team_id", referencedColumnName="id")})
+    @ManyToMany(targetEntity = Team.class)
     private List<Team> teams;
 
 }

@@ -36,14 +36,15 @@ public class Team extends MyEntity {
 //    //@JoinColumn(name = "team_id",referencedColumnName = "")
   //  private List<Player> players;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE,targetEntity = Match.class)
-    @JoinTable(name="match_team",
-            joinColumns = {
-            @JoinColumn(name="team_id",referencedColumnName = "id")
-    },inverseJoinColumns = {
-            @JoinColumn(name = "match_id",referencedColumnName = "id")
-    }
-    )
+//    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE,targetEntity = Match.class)
+//    @JoinTable(name="match_team",
+//            joinColumns = {
+//            @JoinColumn(name="team_id",referencedColumnName = "id")
+//    },inverseJoinColumns = {
+//            @JoinColumn(name = "match_id",referencedColumnName = "id")
+//    }
+//    )
+    @ManyToMany(targetEntity = Match.class)
     private List<Match> matches;
 
 }
