@@ -34,7 +34,7 @@ public class Match extends MyEntity {
 
     private String name;
 
-    @ManyToOne(targetEntity = Tournament.class,cascade = CascadeType.MERGE)
+    @ManyToOne(targetEntity = Tournament.class,cascade = CascadeType.PERSIST)
     @JoinColumn(nullable = false,name = "tournament_id")
     private Tournament tournament;
 
